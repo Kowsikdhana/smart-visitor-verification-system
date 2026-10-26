@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "Smart Visitor Verification System API Collection",
+    "description": "Complete Postman collection for testing the Smart Visitor Verification System backend REST APIs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Guard Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"guard\",\n  \"password\": \"guard123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Statistics",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/dashboard/stats",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "dashboard", "stats"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Residents",
+      "item": [
+        {
+          "name": "Get All Residents",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/residents",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "residents"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Residents (Autocomplete)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/residents/search?query=Rahul",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "residents", "search"],
+              "query": [
+                { "key": "query", "value": "Rahul" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Resident",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Meenakshi Sundaram\",\n  \"phone\": \"9876543299\",\n  \"email\": \"meenakshi@example.com\",\n  \"apartmentUnit\": \"B-303\",\n  \"buildingBlock\": \"Tower B\",\n  \"status\": \"ACTIVE\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/residents",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "residents"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Visitors",
+      "item": [
+        {
+          "name": "Lookup Visitor by Phone",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/visitors/search?phone=9123456780",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "visitors", "search"],
+              "query": [
+                { "key": "phone", "value": "9123456780" }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Visits",
+      "item": [
+        {
+          "name": "Register & Check-In Delivery Visitor",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"visitorName\": \"Karthik Raja\",\n  \"phone\": \"9876501234\",\n  \"company\": \"Amazon\",\n  \"vehicleNumber\": \"TN-02-CD-4567\",\n  \"residentId\": 1,\n  \"visitorType\": \"DELIVERY\",\n  \"purpose\": \"Package Delivery\",\n  \"notes\": \"Carrying small cardboard box\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/visits",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "visits"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current Visitors Inside",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/visits/current",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "visits", "current"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter Visitor History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/visits/history?type=DELIVERY&status=CHECKED_IN",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "visits", "history"],
+              "query": [
+                { "key": "type", "value": "DELIVERY" },
+                { "key": "status", "value": "CHECKED_IN" }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Check Out Visitor by ID",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "http://localhost:8080/api/visits/1/check-out",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "visits", "1", "check-out"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Visit by Pass Code",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8080/api/visits/pass/VIS-2026-1001",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "visits", "pass", "VIS-2026-1001"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
